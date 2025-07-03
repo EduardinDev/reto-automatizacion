@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.13'
+}
+
+group 'com.banistmo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.serenity-bdd:serenity-core:3.6.12'
+    implementation 'net.serenity-bdd:serenity-junit:3.6.12'
+    implementation 'net.serenity-bdd:serenity-screenplay:3.6.12'
+    implementation 'net.serenity-bdd:serenity-screenplay-webdriver:3.6.12'
+    implementation 'net.serenity-bdd:serenity-cucumber:3.6.12'
+    testImplementation 'io.cucumber:cucumber-java:6.11.0'
+    testImplementation 'io.cucumber:cucumber-junit:6.11.0'
+}
+
+test {
+    useJUnitPlatform()
+}
