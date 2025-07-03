@@ -11,15 +11,31 @@ repositories {
 }
 
 dependencies {
+    // — Serenity Core & Screenplay (versión consistente)
     implementation 'net.serenity-bdd:serenity-core:3.6.12'
     implementation 'net.serenity-bdd:serenity-junit:3.6.12'
     implementation 'net.serenity-bdd:serenity-screenplay:3.6.12'
     implementation 'net.serenity-bdd:serenity-screenplay-webdriver:3.6.12'
-    implementation 'net.serenity-bdd:serenity-cucumber:3.6.12'
-    testImplementation 'io.cucumber:cucumber-java:6.11.0'
-    testImplementation 'io.cucumber:cucumber-junit:6.11.0'
+
+    // — Integración Cucumber con Serenity (versión actualizada compatible)
+    testImplementation 'net.serenity-bdd:serenity-cucumber:3.6.12'
+
+    // — JUnit 4 (requerido por Serenity-Cucumber)
+    testImplementation 'junit:junit:4.13.2'
+
+    // — WebDriver Manager (opcional pero recomendado)
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.2'
+}
+
+// Configuración del plugin de Serenity
+serenity {
+    testRoot = "src/test/java"
+    requirementsDir = "src/test/resources/features"
 }
 
 test {
-    useJUnitPlatform()
+    useJUnit()
+    systemProperty "webdriver.driver", System.getProperty("webdriver.driver", "chrome")
+    systemProperty "webdriver.chrome.driver", "C:\\Tools\\chromedriver\\chromedriver.exe"
+    systemProperty "headless.mode", System.getProperty("headless.mode", "false")
 }

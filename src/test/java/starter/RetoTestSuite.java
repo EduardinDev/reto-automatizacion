@@ -1,14 +1,14 @@
-
 package starter;
 
-import org.junit.platform.suite.api.ConfigurationParameter;
-import org.junit.platform.suite.api.SelectClasspathResource;
-import org.junit.platform.suite.api.Suite;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 
-import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(
+        features = "classpath:features/reto",
+        glue     = "starter.stepdefinitions"
+)
+public class RetoTestSuite { }
 
-@Suite
-@SelectClasspathResource("features/reto")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "starter.stepdefinitions")
-public class RetoTestSuite {
-}
+
